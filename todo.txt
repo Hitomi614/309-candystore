@@ -1,0 +1,100 @@
+============ TODO        ============
+- create login page & validation: see auto.php of input validation
+- customer model
+- store shopping cart info in PHP session
+
+- model:
+	>>> _model: things can do with the object (delete, edit, add, etc)
+	- customer: [models/customer_model.php, models/customer.php]
+	- order (shopping cart): [models/order_model.php]
+		- change item quantity
+		- delete items
+		- show total cost
+	- (order item) ? to modify quantity, etc? 
+		[models/order_item_model.php, models/order_item.php]
+	
+- controllers:
+	- create new user:
+		- if validation fails, reload page with username, email and alert
+		- if pass, redirect to home
+	- log in:
+		- if validation fails, reload page with username and alert
+		- if pass, redirect to home
+	- shopping cart:
+		- changing, editing items in cart
+		- checkout
+	- admin: see views for details
+		- home admin: link to three views below
+		- modify products
+		- modify customers
+		- display finalized orders
+
+- views:
+	- browse shop/products *** INDEX.HTML ***:
+		- add to shopping cart
+		- link: to log in
+		- link: to register
+		- link: to shopping cart
+		- link: to checkout
+	- login page
+		- link: to home
+	- create new user:
+		- Credit card number must have 16 digits
+		- Expiration date should be a valid date (MM/YY)
+		- The card should not have expired
+		- All fields in the customer profile should not be null
+		- Customer email most conform to a valid email format
+		- Password most be at least 6 characters long
+		- link: "cancel" to home
+	- admin page:
+		- home admin: link to three views below
+		- add, delete, edit products
+		- delete all customer and order info
+		- display all finalized orders
+	- shopping cart:
+		- view, change item quantity
+		- link: to checkout
+		- link: to browse
+	- checkout
+		- collect payment info
+		- display printable receipt
+		- link: to shopping cart
+		- link: "cancel" to browse
+
+============ DESCRIPTION ============
+
+- Create new account.
+- User login.
+- Browse candy inventory.
+- Add candy to shopping cart.
+- Edit shopping cart contents:
+	- change item quantity
+	- delete items
+- Checkout. 
+	- collect payment information (credit card number and expiry date)
+	- display a printable receipt
+- Email receipt to customer.
+
+
+============ REQUIREMENTS ============
+
+- include admin page:
+	- accesible by login into the site using "admin" username & pwd
+	+ add, delete, edit products
+	- display all finalized orders
+	- delete all customer and order info
+
+- each item offered by the store should include a picture
+- shopping cart shows total cost for items selected
+- For unfinalized orders:
+	- store shopping cart information on the server using a PHP session
+- once orders are finalized:
+	- Store information in the provided database
+- validate user input:
+	- Credit card number must have 16 digits
+	- Expiration date should be a valid date (MM/YY)
+	- The card should not have expired
+	- All fields in the customer profile should not be null
+	- Customer email most conform to a valid email format
+	- Password most be at least 6 characters long
+
