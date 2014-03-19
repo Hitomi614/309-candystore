@@ -19,17 +19,19 @@ class Product_model extends CI_Model {
 	}
 	
 	function insert($product) {
-		return $this->db->insert("product", array('name' => $product->name,
-				                                  'description' => $product->description,
-											      'price' => $product->price,
-												  'photo_url' => $product->photo_url));
+		return $this->db->insert("product", array(
+			'name' => $product->name,
+	                'description' => $product->description,
+			'price' => $product->price,
+			'photo_url' => $product->photo_url));
 	}
 	 
 	function update($product) {
 		$this->db->where('id', $product->id);
-		return $this->db->update("product", array('name' => $product->name,
-				                                  'description' => $product->description,
-											      'price' => $product->price));
+		return $this->db->update("product", array(
+			'name' => $product->name,
+			'description' => $product->description,
+			'price' => $product->price));
 	}
 	
 	
