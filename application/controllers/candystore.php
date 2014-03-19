@@ -118,9 +118,28 @@ class CandyStore extends CI_Controller {
 		redirect('candystore/index', 'refresh');
 	}
       
-   
+	function login() {
+	    	$this->load->view('users/login.php');
+    }
+	
+    function newUser() {
+    	$this->load->view('users/newUser.php');
+    }
     
+    function order() {
+    	$this->load->view('order/order.php');
+    }
     
+    function cart() {
+    	$this->load->view('users/cart.php');
+    }
     
+    function checkout() {
+    	$this->load->view('users/checkout.php');
+    }
+    
+    function receipt() {
+    	$this->load->view('users/receipt.php');
+    }
 }
 
