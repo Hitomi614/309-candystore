@@ -9,4 +9,3 @@
 	echo "<p><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='100px'/></p>";
 		
 ?>	
-
