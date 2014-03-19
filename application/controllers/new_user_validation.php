@@ -32,11 +32,6 @@ $config = array (
 			'field' => 'ccard_date',
 			'label' => 'Credit Card date',
 			'rules' => 'required|callback_ccard_date_check|callback_ccard_exp_check'
-		),
-		array(
-			'field' => 'username',
-			'label' => '',
-			'rules' => 'required|'
-		),
+		)
 	)
 );
