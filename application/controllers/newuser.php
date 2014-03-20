@@ -1,5 +1,4 @@
 <?php
-//include base_url().'application/models/customer.php';
 
 //session_start();
 class Newuser extends CI_Controller {
@@ -8,6 +7,7 @@ class Newuser extends CI_Controller {
 		parent::__construct();
 	}
 
+	
 	function index() {
 		$this->load->view('users/newUser.php');
 	}
@@ -18,7 +18,7 @@ class Newuser extends CI_Controller {
 			$this->load->view('users/newUser.php');
 		} else {
 			// insert user into database
-			$this->load->model('customer');
+			$this->load->model('customer_model');
 
 			$customer = new Customer();
 			$customer->first = $this->input->get_post('first');
@@ -27,7 +27,7 @@ class Newuser extends CI_Controller {
             $customer->password = $this->input->get_post('password');
             $customer->email = $this->input->get_post('email');
 
-			$this->customer->insert($customer);
+			$this->customer_model->insert($customer);
 
 			$this->load->view('users/regSuccess.php');
 		}
@@ -43,4 +43,3 @@ class Newuser extends CI_Controller {
 		return true;
 	}
 }
-?>
