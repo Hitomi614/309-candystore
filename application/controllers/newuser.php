@@ -9,6 +9,7 @@ class Newuser extends CI_Controller {
 	}
 
 	function index() {
+		$this->load->model('customer_model');
 		$this->load->view('users/newUser.php');
 	}
 
@@ -17,24 +18,21 @@ class Newuser extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('users/newUser.php');
 		} else {
+
 			// insert user into database
 			$this->load->model('customer');
-
+			
 			$customer = new Customer();
 			$customer->first = $this->input->get_post('first');
 			$customer->last = $this->input->get_post('last');
             $customer->login = $this->input->get_post('login');
             $customer->password = $this->input->get_post('password');
             $customer->email = $this->input->get_post('email');
-
 			$this->customer->insert($customer);
 
-<<<<<<< HEAD
-			$this->load->view('candystore/index');
-=======
 			$this->load->view('users/regSuccess.php');
->>>>>>> 5c1250ddf9f1e4019ae26a2e9b5bfff607066245
-		}
+
+	}
 	}
 
 	// must be of format XXX-XXX-XXXX

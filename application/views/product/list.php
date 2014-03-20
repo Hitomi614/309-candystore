@@ -9,7 +9,7 @@
 			echo "<p> Hi " . $_SESSION["username"] . "! </p>";
 			//links to shopping cart and checkout
 			echo "<p>" . anchor('candystore/cart','My Shopping Cart') . "</p>";
-			echo "<p>" . anchor('checkout/checkout','Checkout') . "</p>";
+			echo "<p>" . anchor('checkout/index','Checkout') . "</p>";
 			
 			if (($_SESSION["username"] == "admin")) {
 				// show Edit Order and Add New options if user is an admin
