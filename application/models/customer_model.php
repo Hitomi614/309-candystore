@@ -8,7 +8,7 @@ class Customer_model extends CI_Model {
 
 
         function insert($customer) {
-                return $this->db->insert("product", array(
+                return $this->db->insert("customer", array(
                         'first' => $customer->first,
                         'last' => $customer->last,
                         'login' => $customer->login,

@@ -26,10 +26,6 @@
 	echo form_label('Email');
 	echo form_error('email');
 	echo form_input('email', set_value('email'),"required");
-	
-	echo form_label('Phone');
-	echo form_error('phone');
-	echo form_input('phone' ,set_value('phone'),"required");
 
 	echo form_submit('submit', 'Create');
 	echo form_close();
