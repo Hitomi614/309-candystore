@@ -1,6 +1,7 @@
 <?php
+//include base_url().'application/models/customer.php';
 
-session_start();
+//session_start();
 class Newuser extends CI_Controller {
 	function __construct() {
 		// call the controller constructor
@@ -17,18 +18,18 @@ class Newuser extends CI_Controller {
 			$this->load->view('users/newUser.php');
 		} else {
 			// insert user into database
-			$this->load->model('customer_model');
+			$this->load->model('customer');
 
 			$customer = new Customer();
 			$customer->first = $this->input->get_post('first');
 			$customer->last = $this->input->get_post('last');
-                        $customer->login = $this->input->get_post('login');
-                        $customer->password = $this->input->get_post('password');
-                        $customer->email = $this->input->get_post('email');
+            $customer->login = $this->input->get_post('login');
+            $customer->password = $this->input->get_post('password');
+            $customer->email = $this->input->get_post('email');
 
-			$this->customer_model->insert($customer);
+			$this->customer->insert($customer);
 
-			$this->load->view(); // TODO: success page
+			$this->load->view('users/regSuccess.php');
 		}
 	}
 
