@@ -1,31 +1,31 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Checkout extends CI_Controller {
 
 
-	function __construct() {
-		parent::_construct();
-	}
+function __construct() {
+parent::_construct();
+}
 
 
-	function index() {
-		$this->load->view('users/newUser.php'); // TODO: fill view()
-	}
+function index() {
+$this->load->view(); // TODO: fill view()
+}
 
 
-	function checkout() {
-	        $this->load->library('form_validation');
+function checkout() {
+$this->load->library('form_validation');
                 if ($this->form_validation->run() == FALSE) {
                         $this->load->view(); // TODO: fill in view();
                 } else {
-                	    //Then we redirect to the index page again
-						redirect('candystore/index', 'refresh');
+                        $this->load->view(); // TODO: success page
                 }
         }
 
 
-	// TODO: INSERT ORDER INFO INTO DATABASE
+// TODO: INSERT ORDER INFO INTO DATABASE
         // checks that the credit card has 16 digits
         public function ccard_check($ccard) {
                 if (preg_match("/^\d{16}$/", $ccard) == 0) {
@@ -50,15 +50,15 @@ class Checkout extends CI_Controller {
         public function ccard_exp_check($ccard_date) {
                 // get user's month and year
                 $month = intval(substr($ccard_date, 0, 2));
-                $year  = intval(substr($ccard_date, 3, 2));
+                $year = intval(substr($ccard_date, 3, 2));
 
                 // get current month and year
                 $cmonth = date('m');
-                $cyear  = date('y');
+                $cyear = date('y');
 
                 // false if provided year is smaller than current year, or
-                //           if provided month is smaller than current month AND
-                //          provided year is smaller or equal to current year
+                // if provided month is smaller than current month AND
+                // provided year is smaller or equal to current year
                 if ( ($year < $cyear) || (($month < $cmonth) && ($year <= $cyear))) {
                         $this->form_validation->set_message('ccard_exp_check', 'Credit card has expired!');
                         return false;
