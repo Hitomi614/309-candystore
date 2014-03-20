@@ -28,7 +28,7 @@ class Newuser extends CI_Controller {
             $customer->email = $this->input->get_post('email');
 
 			$this->customer_model->insert($customer);
-
+			
 			
 			$this->load->view('users/regSuccess.php');
 		}
