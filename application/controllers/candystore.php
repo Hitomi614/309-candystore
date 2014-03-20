@@ -119,7 +119,7 @@ class CandyStore extends CI_Controller {
 	}
       
 	function login() {
-	    	$this->load->view('users/login.php');
+	    $this->load->view('users/login.php');
     }
 	
     function newUser() {
@@ -134,12 +134,5 @@ class CandyStore extends CI_Controller {
     	$this->load->view('users/cart.php');
     }
     
-    function checkout() {
-    	$this->load->view('users/checkout.php');
-    }
-    
-    function receipt() {
-    	$this->load->view('users/receipt.php');
-    }
 }
 

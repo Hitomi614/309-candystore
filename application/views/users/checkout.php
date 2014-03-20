@@ -9,7 +9,7 @@
 	echo "<p>" . anchor('candystore/index','Back to Store') . "</p>";
 	echo "<p>" . anchor('candystore/cart','Edit Shopping Cart') . "</p>";
 	
-	echo form_open('candystore/checkout');
+	echo form_open('checkout/checkout');
 		
 	echo form_label('Credit Card Number', 'cardno'); 
 	echo form_error('cardno');

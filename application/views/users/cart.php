@@ -8,6 +8,6 @@
 
 <?php
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
-	echo "<p>" . anchor('candystore/checkout','Proceed to Checkout') . "</p>";
+	echo "<p>" . anchor('checkout/checkout','Proceed to Checkout') . "</p>";
 	echo "<p> Total cost:" . "</p>";
 ?>

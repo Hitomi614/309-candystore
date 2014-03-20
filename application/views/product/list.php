@@ -1,6 +1,8 @@
 <h2>Product Table</h2>
 <?php 
 		
+		$admin = false;
+		
 		// check if logged in and say hi to user and display links to extra functions 
 		if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true")) {
 			
@@ -11,6 +13,7 @@
 			
 			if (($_SESSION["username"] == "admin")) {
 				// show Edit Order and Add New options if user is an admin
+				$admin = true;
 				echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
 				echo "<p>" . anchor('candystore/order','Edit Order') . "</p>";
 			}
@@ -30,9 +33,12 @@
 			echo "<td>" . $product->description . "</td>";
 			echo "<td>" . $product->price . "</td>";
 			echo "<td><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='100px' /></td>";
-			//iff login-ed as admin then echo the two following lines
-			//echo "<td>" . anchor("candystore/delete/$product->id",'Delete',"onClick='return confirm(\"Do you really want to delete this record?\");'") . "</td>";
-			//echo "<td>" . anchor("candystore/editForm/$product->id",'Edit') . "</td>";
+			
+			//only admin will see Delete and Edit
+			if ($admin == "true") {
+				echo "<td>" . anchor("candystore/delete/$product->id",'Delete',"onClick='return confirm(\"Do you really want to delete this record?\");'") . "</td>";
+				echo "<td>" . anchor("candystore/editForm/$product->id",'Edit') . "</td>";
+			}
 			echo "<td>" . anchor("candystore/read/$product->id",'View') . "</td>";
 				
 			echo "</tr>";
