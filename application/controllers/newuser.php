@@ -28,7 +28,7 @@ class Newuser extends CI_Controller {
 
 			$this->customer_model->insert($customer);
 
-			$this->load->view(); // TODO: success page
+			$this->load->view('candystore/index');
 		}
 	}
 

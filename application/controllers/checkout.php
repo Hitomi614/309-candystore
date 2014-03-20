@@ -11,7 +11,7 @@ function __construct() {
 
 
 function index() {
-	$this->load->view('users/checkout.php'); // TODO: fill view()
+	$this->load->view('users/checkout.php');
 }
 
 

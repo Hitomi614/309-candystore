@@ -1,15 +1,15 @@
 <h2>Product Table</h2>
 <?php 
 		
-		$admin = false;
-		
+// 		$admin = false;
+		$admin = true;
 		// check if logged in and say hi to user and display links to extra functions 
-		if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true")) {
+ 		if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true")) {
 			
 			echo "<p> Hi " . $_SESSION["username"] . "! </p>";
 			//links to shopping cart and checkout
 			echo "<p>" . anchor('candystore/cart','My Shopping Cart') . "</p>";
-			echo "<p>" . anchor('candystore/checkout','Checkout') . "</p>";
+			echo "<p>" . anchor('checkout/checkout','Checkout') . "</p>";
 			
 			if (($_SESSION["username"] == "admin")) {
 				// show Edit Order and Add New options if user is an admin
@@ -17,11 +17,11 @@
 				echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
 				echo "<p>" . anchor('candystore/order','Edit Order') . "</p>";
 			}
-		}
+ 		}
 
 		//links to user login and create new user
 		echo "<p>" . anchor('candystore/login','Login') . "</p>";
-		echo "<p>" . anchor('candystore/newUser','Create New user Account') . "</p>";
+		echo "<p>" . anchor('newuser/index','Create New user Account') . "</p>";
 
 		
 		echo "<table>";
