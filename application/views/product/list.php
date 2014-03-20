@@ -1,8 +1,9 @@
 <h2>Product Table</h2>
 <?php 
 		
-		$admin = false;
-		
+ 		$admin = false;
+ 		$loggedin = false;
+
 		// check if logged in and say hi to user and display links to extra functions 
 		if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
 			
@@ -43,10 +44,14 @@
 			echo "<td>" . $product->price . "</td>";
 			echo "<td><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='100px' /></td>";
 			
-			// TODO: only admin will see Delete and Edit; ADMINS DELETE ALL!!
-			if ($admin == "true") {
+			//only admin will see Delete and Edit
+			if ($admin == true) {
 				echo "<td>" . anchor("candystore/delete/$product->id",'Delete',"onClick='return confirm(\"Do you really want to delete this record?\");'") . "</td>";
 				echo "<td>" . anchor("candystore/editForm/$product->id",'Edit') . "</td>";
+			}
+			if ($loggedin == true) {
+				#TODO: add to session order
+				echo "<td>" . anchor("candystore/add/$product->id",'Add') . "</td>";
 			}
 			echo "<td>" . anchor("candystore/read/$product->id",'View') . "</td>";
 				

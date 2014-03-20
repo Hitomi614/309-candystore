@@ -27,6 +27,15 @@ function checkout() {
 		$this->load->model('order_model');
 		$this->order_model->finalize($ccard, $month, $year);
 		$this->load->view('user/receipt.php');
+		
+		//email receipt to customer
+		$this->load->library('email');
+		$this->email->from('candystore@gmail.com', 'CandyStore');
+		$this->email->to($customer->email);
+		$this->email->subject('Receipt of Your Candy Orders');
+		$receipt = file_get_html('user/receipt.php');
+		$this->email->message($receipt->find('div[#toEmail]', 0));
+		$this->email->send();
 	}
 }
 

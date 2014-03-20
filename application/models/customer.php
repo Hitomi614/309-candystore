@@ -6,5 +6,6 @@ class Customer  {
         public $login;
         public $password;
         public $email;
+        // we don't care about user's phone number
 }
 
