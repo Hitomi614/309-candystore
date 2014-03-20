@@ -13,7 +13,7 @@ class Customer_model extends CI_Model {
                         'last' => $customer->last,
                         'login' => $customer->login,
                         'password' => $customer->password,
-			'email' => $customer->email));
+						'email' => $customer->email));
         }
 }
 ?>

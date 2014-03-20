@@ -1,4 +1,4 @@
-<? php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 class Checkout extends CI_Controller {
@@ -10,7 +10,7 @@ class Checkout extends CI_Controller {
 
 
 	function index() {
-		$this->load->view(); // TODO: fill view()
+		$this->load->view('users/newUser.php'); // TODO: fill view()
 	}
 
 
@@ -19,7 +19,8 @@ class Checkout extends CI_Controller {
                 if ($this->form_validation->run() == FALSE) {
                         $this->load->view(); // TODO: fill in view();
                 } else {
-                        $this->load->view(); // TODO: success page
+                	    //Then we redirect to the index page again
+						redirect('candystore/index', 'refresh');
                 }
         }
 

@@ -8,14 +8,13 @@ class Newuser extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view(); // TODO: fill in view()
+		$this->load->view('users/newUser.php');
 	}
 
 	function register() {
 		$this->load->library('form_validation');
 		if ($this->form_validation->run() == FALSE) {
-			// TODO: show erros?
-			$this->load->view(); // TODO: fill in view();
+			$this->load->view('users/newUser.php');
 		} else {
 			// insert user into database
 			$this->load->model('customer_model');
@@ -36,7 +35,8 @@ class Newuser extends CI_Controller {
 	// must be of format XXX-XXX-XXXX
 	public function phone_check($phone) {
 		if (preg_match("/^\d{3}-\d{3}-\d{4}$/", $phone) == 0) {
-			$this->form_validation->set_message('phone_check', 'Invalid phone number. Must be of format XXX-XXX-XXXX.');
+			$this->form_validation->set_message('phone_check',
+			'Invalid phone number. Must be of format XXX-XXX-XXXX.');
 			return false;
 		}
 		return true;
