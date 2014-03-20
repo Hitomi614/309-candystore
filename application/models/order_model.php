@@ -1,6 +1,6 @@
 <?php
 class Order_model extends CI_Model { // shopping cart
-	// admin: display all finalized orders
+
 	function getAll()
 	{  
 		$query = $this->db->get('order');
@@ -12,13 +12,6 @@ class Order_model extends CI_Model { // shopping cart
 		return $this->db->empty_table('order');
 	}
 	
-	// TODO: customer: store unfinalized order in PHP session
-	// an order can be an associative array of (product_id => quantity)
-	// when the first item is added to the cart, instantiate the array.
-	
-	// show all items
-	// modify item quantity
-	// delete items
 	
 	// updates and returns total of shopping cart
 	// no input since there's only one active session
@@ -41,16 +34,21 @@ class Order_model extends CI_Model { // shopping cart
 		return $total;
 	}
 	
-	// customer: finalize order: insert customer info into database
-	function finalize($order) {
-		return $this->db->insert_id("order", array(
-				'customer_id' => $order->customer_id,
-				'order_date' => $order->order_date,
-				'order_time' => $order->order_time,
-				'total' => $order->total,
-				'creditcard_number' => $order->creditcard_number,
-				'creditcard_month' => $order->creditcard_month,
-				'creditcard_year' => $order->creditcard_year));
+	// customer: insert order info into database
+	function finalize($ccard, $month, $year) {
+		// get customer id with email
+		$this->db->select('id');
+		$this->db->where('email', $_SESSION["email"]);
+		$query = $this->db->get('customer');
+		$customer_id = $query->row(0, 'id');
+
+		$total = floatval($this->total());
+		
+		$myquery = 'INSERT INTO `candystore`.`order`(`customer_id`, `order_date`, `order_time`, `total`, `creditcard_number`, `creditcard_month`, `creditcard_year`)
+			VALUES($customer_id, CURRENT_DATE(), CURRENT_TIME(), $total, '$ccard', $month, $year)';
+
+		$this->db->query($myquery);
+		return $this->db->insert_id();
 	}
 }
 ?>

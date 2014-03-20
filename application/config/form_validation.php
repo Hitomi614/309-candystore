@@ -15,7 +15,7 @@ $config = array(
 		array(
 			'field' => 'login',
 			'label' => 'Username',
-			'rules' => 'required|min_length[5]|max_length[16]'
+			'rules' => 'required|min_length[5]|max_length[16]|is_unique[customer.login]'
 		),
 		array(
 			'field' => 'password',
@@ -30,7 +30,7 @@ $config = array(
                 array(
                         'field' => 'email',
                         'label' => 'Email',
-                        'rules' => 'required|valid_email|max_length[45]'
+                        'rules' => 'required|valid_email|max_length[45]|is_unique[customer.email]'
                 )
 	),
 	'checkout/checkout' => array(
@@ -39,10 +39,15 @@ $config = array(
                         'label' => 'Credit Card',
                         'rules' => 'required|callback_ccard_check'
                 ),
-                array(
-                        'field' => 'ccard_date',
-                        'label' => 'Credit Card date',
-                        'rules' => 'required|callback_ccard_date_check|callback_ccard_exp_check'
+		array(
+                        'field' => 'month',
+                        'label' => 'MM',
+                        'rules' => 'required|callback_ccard_month'
+                ),
+		array(
+                        'field' => 'year',
+                        'label' => 'YY',
+                        'rules' => 'required|callback_ccard_year|callback_exp'
                 )
         )
 );

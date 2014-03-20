@@ -26,12 +26,12 @@ class Order_Item_model extends CI_Model { // shopping cart
 	
 	// insert all order items from this session
 	function finalize($order_id) {
-		// must get order id from 
 		foreach ($_SESSION['order'] as $product_id => $quantity) {
 			$this->db->insert("order_item", array(
 					'order_id' => $order_id,
 					'product_id' => $product_id,
 					'quantity' => $quantity));
 		}
+		return;
 	}
 }

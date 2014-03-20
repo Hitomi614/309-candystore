@@ -2,7 +2,7 @@
 <?php 
 
 		//links to user login and create new user
-	echo "<p>" . anchor('candystore/index','Home') . "</p>";
+	echo "<p>" . anchor('candystore/index','Start shopping!') . "</p>";
 
 ?>	
 

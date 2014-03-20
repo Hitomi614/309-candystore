@@ -7,7 +7,37 @@
 </style>
 
 <?php
+	// assuming that you can only reach here if you're logged in
+	if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
+		echo "<p> Hi " . $_SESSION["username"] . "! </p>";
+	}
+	echo "<table>";
+	echo "<tr><th>Product</th><th>Quantity</th>Change Quantity</tr>";
+
+	foreach ($_SESSION['order'] as $product_id => $quantity) {
+		echo "<tr>";
+		// get product name from database given $product_id
+		$this->db->select('name');
+		$this->db->where('id', $product_id);
+		$query = $this->db->get('product');
+		$name = $query->row(0, 'name');
+
+		echo "<td>" . $name . "</td>";
+		echo "<td>" . $quantity . "</td>";
+
+		// field to change quantity
+	}
+
+        echo "<table>";
+
+	// TODO: update total
+	$this->load->model('order_item_model');
+	echo "<p>" . anchor(,'Update') . "</p>";
+
+	$this->load->model('order_model');
+	$total = $this->order_model->total();
+
+	echo "<p>" Total cost: \$$total "</p>";
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
-	echo "<p>" . anchor('checkout/checkout','Proceed to Checkout') . "</p>";
-	echo "<p> Total cost:" . "</p>";
+	echo "<p>" . anchor('checkout/index','Proceed to Checkout') . "</p>";
 ?>

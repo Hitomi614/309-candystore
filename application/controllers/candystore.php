@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class CandyStore extends CI_Controller {
    
@@ -20,9 +21,21 @@ class CandyStore extends CI_Controller {
     }
 
     function index() {
+		// products
     		$this->load->model('product_model');
     		$products = $this->product_model->getAll();
     		$data['products']=$products;
+
+                // orders
+                $this->load->model('order_model');
+                $orders = $this->order_model->getAll();
+                $data['orders']=$orders;
+
+                // customers
+                $this->load->model('customer_model');
+                $customers = $this->customer_model->getAll();
+                $data['customers']=$customers;
+
     		$this->load->view('product/list.php',$data);
     }
     
@@ -126,13 +139,36 @@ class CandyStore extends CI_Controller {
     	$this->load->view('users/newUser.php');
     }
     
-    function order() {
-    	$this->load->view('order/order.php');
+    function orders() {
+    	$this->load->view('orders/orders.php');
+    }
+
+    function delete_orders() {
+	$this->load->model('order_model');
+	$this->order_model->deleteAll();
+	redirect('candystore/orders', 'refresh');
+	return;
+    }
+
+    function customers() {
+	$this->load->view('users/users.php');
+    }
+
+    function delete_users() {
+	$this->load->model('customer_model');
+        $this->customer_model->deleteAll();
+	redirect('candystore/customers', 'refresh');
+	return;
     }
     
     function cart() {
     	$this->load->view('users/cart.php');
     }
-    
+
+    function logout() {
+	$_SESSION = array();
+	redirect('candystore/index', 'refresh');
+    } 
+
 }
 

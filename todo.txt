@@ -1,23 +1,15 @@
 http://redwolf.cdf.toronto.edu:31125/candystore/
-there can only be one active order at a time, with its associated order_items
-@@@@ NOTES @@@@
-@ when finalizing a shopping cart, must call:
-@ 	order_model/finalize, then
-@	order_item_model/finalize with value returned from order_model/finalize (the order_id)
-@ 	inserts both customer info and items into db
-@@@@@@@@@@@@@@@
 ============ TODO        ============
 - create login page & validation: see auto.php of input validation
-- customer model
 - store shopping cart info in PHP session
 
 - model:
 	>>> _model: things can do with the object (delete, edit, add, etc)
 	- customer: [models/customer_model.php, models/customer.php]
-	= order (shopping cart): [models/order_model.php]
-		= change item quantity
-		= delete items
-		= show total cost
+	- order (shopping cart): [models/order_model.php]
+		- change item quantity
+		- delete items
+		- show total cost
 	= (order item) ? to modify quantity, etc? 
 		[models/order_item_model.php, models/order_item.php]
 	
