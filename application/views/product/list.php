@@ -1,19 +1,25 @@
 <h2>Product Table</h2>
 <?php 
-		//link to add new candy
-		//add if block around the following echos
-		//i.e iff logged in as admin echo lines below
-		//echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
-		//echo "<p>" . anchor('candystore/order','Edit Order') . "</p>";
 		
+		// check if logged in and say hi to user and display links to extra functions 
+		if ((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true")) {
+			
+			echo "<p> Hi " . $_SESSION["username"] . "! </p>";
+			//links to shopping cart and checkout
+			echo "<p>" . anchor('candystore/cart','My Shopping Cart') . "</p>";
+			echo "<p>" . anchor('candystore/checkout','Checkout') . "</p>";
+			
+			if (($_SESSION["username"] == "admin")) {
+				// show Edit Order and Add New options if user is an admin
+				echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
+				echo "<p>" . anchor('candystore/order','Edit Order') . "</p>";
+			}
+		}
+
 		//links to user login and create new user
 		echo "<p>" . anchor('candystore/login','Login') . "</p>";
 		echo "<p>" . anchor('candystore/newUser','Create New user Account') . "</p>";
-		
-		//links to shopping cart and checkout
-		//pop up "you must log in first" if not already logged in with a valid user account
-		echo "<p>" . anchor('candystore/cart','My Shopping Cart') . "</p>";
-		echo "<p>" . anchor('candystore/checkout','Checkout') . "</p>";
+
 		
 		echo "<table>";
 		echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Photo</th></tr>";
