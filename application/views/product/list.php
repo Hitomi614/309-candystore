@@ -17,11 +17,14 @@
 				echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
 				echo "<p>" . anchor('candystore/order','Edit Order') . "</p>";
 			}
+ 		} else {
+ 			//we won't allow users to create a new account while logged in
+ 			echo "<p>" . anchor('newuser/index','Create New user Account') . "</p>";
  		}
 
 		//links to user login and create new user
 		echo "<p>" . anchor('candystore/login','Login') . "</p>";
-		echo "<p>" . anchor('newuser/index','Create New user Account') . "</p>";
+
 
 		
 		echo "<table>";
