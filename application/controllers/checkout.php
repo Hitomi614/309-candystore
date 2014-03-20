@@ -26,7 +26,6 @@ function checkout() {
 
 		$this->load->model('order_model');
 		$this->order_model->finalize($ccard, $month, $year);
-		$this->load->view('user/receipt.php');
 		
 		//email receipt to customer
 		$this->load->library('email');
@@ -36,6 +35,8 @@ function checkout() {
 		$receipt = file_get_html('user/receipt.php');
 		$this->email->message($receipt->find('div[#toEmail]', 0));
 		$this->email->send();
+
+		$this->load->view('user/receipt.php');
 	}
 }
 

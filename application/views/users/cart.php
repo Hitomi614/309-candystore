@@ -26,18 +26,18 @@
 		echo "<td>" . $quantity . "</td>";
 
 		// field to change quantity
+		echo "<p>" . anchor('item/index/$product_id', 'Change quanitity') . "</p>";
 	}
 
         echo "<table>";
 
-	// TODO: update total
-	$this->load->model('order_item_model');
-	echo "<p>" . anchor(,'Update') . "</p>";
-
 	$this->load->model('order_model');
 	$total = $this->order_model->total();
 
-	echo "<p>" Total cost: \$$total "</p>";
+	echo "<p> Total cost: " . $total "</p>";
+
+	echo "<p>" . anchor('candystore/update_total','Update Total') . "</p>";
+
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
 	echo "<p>" . anchor('checkout/index','Proceed to Checkout') . "</p>";
 ?>

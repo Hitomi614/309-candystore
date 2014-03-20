@@ -33,6 +33,19 @@ $config = array(
                         'rules' => 'required|valid_email|max_length[45]|is_unique[customer.email]'
                 )
 	),
+
+        'login/login' => array(
+                array(
+                        'field' => 'login',
+                        'label' => 'Login',
+                        'rules' => 'required|callback_valid_login'
+                ),
+                array(
+                        'field' => 'password',
+                        'label' => 'Password',
+                        'rules' => 'required|callback_valid_password'
+                )
+        ),
 	'checkout/checkout' => array(
                 array(
                         'field' => 'ccard',

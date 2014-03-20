@@ -134,7 +134,15 @@ class CandyStore extends CI_Controller {
 	function login() {
 	    $this->load->view('users/login.php');
     }
-    
+
+
+    function update_total() {
+	$this->load->model('order_model');
+	$this->order_model->total();
+	redirect('users/cart.php', 'refresh');
+    }
+
+
     function orders() {
     	$this->load->view('orders/orders.php');
     }

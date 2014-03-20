@@ -26,7 +26,8 @@ class Order_model extends CI_Model { // shopping cart
 				$this->db->select('price');
 				$this->db->where('id', $product_id);
 				$query = $this->db->get('product');
-				$price = $query->row(0, 'price');
+				$row = $query->row(0, 'product');
+				$price = $row->price;
 				
 				$total += $quantity * $price;
 			}
@@ -36,11 +37,12 @@ class Order_model extends CI_Model { // shopping cart
 	
 	// customer: insert order info into database
 	function finalize($ccard, $month, $year) {
-		// get customer id with email
+		// get customer id with username
 		$this->db->select('id');
-		$this->db->where('email', $_SESSION["email"]);
+		$this->db->where('username', $_SESSION["username"]);
 		$query = $this->db->get('customer');
-		$customer_id = $query->row(0, 'id');
+		$row = $query->row(0, 'id');
+		$customer_id = $row->id;
 
 		$total = floatval($this->total());
 		
