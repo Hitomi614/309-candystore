@@ -29,17 +29,8 @@ class Newuser extends CI_Controller {
 
 			$this->customer_model->insert($customer);
 
+			
 			$this->load->view('users/regSuccess.php');
 		}
-	}
-
-	// must be of format XXX-XXX-XXXX
-	public function phone_check($phone) {
-		if (preg_match("/^\d{3}-\d{3}-\d{4}$/", $phone) == 0) {
-			$this->form_validation->set_message('phone_check',
-			'Invalid phone number. Must be of format XXX-XXX-XXXX.');
-			return false;
-		}
-		return true;
 	}
 }
