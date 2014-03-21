@@ -63,7 +63,7 @@ function checkout() {
 		}
 		global $g_month;
 		$g_month = $month;
-		return true;
+			return true;
 	}
 
 
@@ -99,3 +99,4 @@ function checkout() {
 	}
 	
 }
+

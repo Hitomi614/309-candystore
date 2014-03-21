@@ -64,5 +64,3 @@ function valid_password($password) {
 }
 
 }
-
-?>

@@ -21,8 +21,9 @@ function index() {
 
 function login() {
 	$this->load->library('form_validation');
+	echo "<script type='text/javascript'> alert(test) </script>";
 	if ($this->form_validation->run() == FALSE) {
-		redirect('login/index', 'refresh');
+		$this->load->view('users/login.php');
 	} else {
 		$_SESSION["loggedIn"] = "true";
 		$_SESSION["username"] = $this->input->get_post("login");
@@ -62,4 +63,3 @@ function valid_password($password) {
 	return false;
 }
 }
-?>
