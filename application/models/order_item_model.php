@@ -11,7 +11,7 @@ class Order_Item_model extends CI_Model { // shopping cart
 			$_SESSION['order'] = array();
 		}
 		// $_SESSION['order'] is set at this point
-		$_SESSION['order']['$product_id'] = 0;
+		$_SESSION['order']['$product_id'] = 1;
 	}
 	
 	// assumes that the item is in the shopping cart

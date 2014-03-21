@@ -5,7 +5,7 @@
 	input { display: block;}
 	
 </style>
-
+session_start();
 <?php
 	
 	// assuming that you can only reach here if you're logged in

@@ -1,4 +1,5 @@
 <?php
+session_save_path();
 session_start();
 
 class CandyStore extends CI_Controller {
@@ -191,6 +192,12 @@ class CandyStore extends CI_Controller {
     
 	function newUser() {
 		$this->load->view('users/newUser.php');
+	}
+	
+	function add($product_id) {
+		$this->load->model('order_item_model');
+		$this->order_item_model->add_item($product_id);
+		redirect('candystore/index', 'refresh');
 	}
 }
 
