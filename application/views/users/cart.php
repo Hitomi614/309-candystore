@@ -27,7 +27,7 @@
 			echo "<td>" . $quantity . "</td>";
 	
 			// field to change quantity
-			echo "<td>" . anchor("candystore/change/$product_id",'Change') . "</td>";
+			echo "<td>" . anchor("candystore/change" ,'Change') . "</td>";
 				
 		}
 	}

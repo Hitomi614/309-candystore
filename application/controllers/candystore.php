@@ -183,9 +183,9 @@ class CandyStore extends CI_Controller {
     
     function change($id) {
     	$this->load->model('order_item_model');
-    	$order = $this->order_item_model->get($id);
+    	$order = $this->product_model->get($id);
     	$data['order']=$order;
-    	$this->load->view('users/change.php',$data);
+    	$this->load->view('users/change.php', $data);
     }
     
 	function newUser() {

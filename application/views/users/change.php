@@ -8,7 +8,7 @@ input { display: block;}
 <?php
 echo "<p>" . anchor('candystore/cart','Back') . "</p>";
 
-echo form_open("candystore/update_quantity/$order->id/");
+echo form_open("candystore/update_quantity/$order->id");
 
 echo form_label('New Quantity');
 echo form_error('quantity');
