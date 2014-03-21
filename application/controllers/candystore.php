@@ -142,6 +142,14 @@ class CandyStore extends CI_Controller {
 	redirect('users/cart.php', 'refresh');
     }
 
+    
+    function update_quantity() {
+    	$this->load->model('order_item_model');
+    	$id = $this->input->get_post('product_id');
+    	$new = $this->input->get_post('quantity');
+    	$this->order_model->set_quantity($id, $new);
+    	redirect('users/cart.php', 'refresh');
+    }
 
     function orders() {
     	$this->load->view('orders/orders.php');
@@ -173,6 +181,16 @@ class CandyStore extends CI_Controller {
 	$_SESSION = array();
 	redirect('candystore/index', 'refresh');
     } 
-
+    
+    function change($id) {
+    	$this->load->model('order_item_model');
+    	$order = $this->order_item_model->get($id);
+    	$data['order']=$order;
+    	$this->load->view('users/change.php',$data);
+    }
+    
+	function newUser() {
+		$this->load->view('users/newUser.php');
+	}
 }
 
