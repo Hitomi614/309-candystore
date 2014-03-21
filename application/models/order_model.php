@@ -22,15 +22,18 @@ class Order_model extends CI_Model { // shopping cart
 		// for all items in the $_SESSION['order'] array,
 		if (isset($_SESSION['order'])) {
 		foreach ($_SESSION['order'] as $product_id => $quantity) {
-// 			echo "<script type='text/javascript'>alert('{$product_id}');</script>";
-// 			echo "<script type='text/javascript'>alert('{$quantity}');</script>";
+ 			//echo "<script type='text/javascript'>alert('{$product_id}');</script>";
+ 			//echo "<script type='text/javascript'>alert('{$quantity}');</script>";
 			
 			// get price of this item
 			$query = $this->db->get_where('product', array('id'=>$product_id));
-			$row = $query->row(0, 'product');
-			$price = $row->price;
-			
-			$total += $quantity * $price;
+			if ($query->num_rows() == 1) {
+				//echo "<script type='text/javascript'>alert('{$query->num_rows()}');</script>";
+				$row = $query->row(0, 'product');
+				$price = $row->price;
+				
+				$total += $quantity * $price;
+			}
 		}
 		}
 		$_SESSION["total"] = $total;

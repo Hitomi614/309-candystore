@@ -10,14 +10,14 @@ class Order_Item_model extends CI_Model { // shopping cart
 			$_SESSION['order'] = array();
 		}
 		// $_SESSION['order'] is set at this point
-		$_SESSION['order'][$product_id] = 1;
-		echo "<script type='text/javascript'>alert('{$product_id}');</script>";
-		echo "<script type='text/javascript'>alert('{$_SESSION['order'][$product_id]}');</script>";
+		if (!isset($_SESSION['order'][$product_id])) {
+			$_SESSION['order'][$product_id] = 1;
+		} else {
+			$_SESSION['order'][$product_id]++;
+		}
 		
-	}
-	
-	// some sort of identifier
-	function get($id) {
+		//echo "<script type='text/javascript'>alert('{$product_id}');</script>";
+		//echo "<script type='text/javascript'>alert('{$_SESSION['order'][$product_id]}');</script>";
 		
 	}
 	

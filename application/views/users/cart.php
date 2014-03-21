@@ -32,20 +32,17 @@
 			echo "<tr>";
 			// get product name from database given $product_id
 			$query = $this->db->get_where('product', array('id'=>$product_id));
-			$row = $query->row(0, 'product');
-			$name = $row->name;
+			if ($query->num_rows() == 1) {
+				$row = $query->row(0, 'product');
+				$name = $row->name;
+			}
 	
 			echo "<td>" . $name . "</td>";
 			echo "<td>" . $quantity . "</td>";
 	
 			// field to change quantity
-<<<<<<< HEAD
 			echo "<td>" . anchor("candystore/change/$product_id",'Change') . "</td>";
 			echo "</tr>";
-=======
-			echo "<td>" . anchor("candystore/change" ,'Change') . "</td>";
-				
->>>>>>> 61f3f897e1e12e65b1a50c6938ec9c9cc2fc50bb
 		}
 	}
 

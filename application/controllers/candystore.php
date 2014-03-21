@@ -139,18 +139,21 @@ class CandyStore extends CI_Controller {
 
     function change($id) {
     	$this->load->model('order_item_model');
-    	$order = $this->order_item_model->get($id);
-    	$data['order']=$order;
+    	//$order = $this->order_item_model->get($id);
+    	$data['id']=$id;
     	$this->load->view('users/change.php',$data);
     }
     
-    function update_quantity() {
+    function update_quantity($id) {
     	$this->load->model('order_item_model');
-    	$id = $this->input->get_post('product_id');
+    	//$id = $this->input->get_post('product_id');
     	$new = $this->input->get_post('quantity');
-    	$this->order_model->set_quantity($id, $new);
+    	$this->order_item_model->set_quantity($id, $new);
+    	
+    	$this->load->model('order_model');
     	$this->order_model->total();
-    	redirect('users/cart.php', 'refresh');
+    	// echo "<script type='text/javascript'>alert('here');</script>";
+		redirect('candystore/cart', 'refresh');
     }
 
     function orders() {
@@ -196,7 +199,7 @@ class CandyStore extends CI_Controller {
 		$this->load->model('order_item_model');
 		$this->order_item_model->add_item($product_id);
 
-		echo "<script type='text/javascript'>alert('{$product_id}');</script>";
+		// echo "<script type='text/javascript'>alert('{$product_id}');</script>";
 				
 		$this->load->model('order_model');
 		$this->order_model->total();

@@ -46,7 +46,7 @@ $config = array(
                         'rules' => 'required|callback_valid_password'
                 )
         ),
-	'checkout/checkout1' => array(
+		'checkout/checkout1' => array(
                 array(
                         'field' => 'ccardno',
                         'label' => 'Credit Card',

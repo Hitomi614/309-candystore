@@ -21,6 +21,7 @@ function index() {
 function checkout1() {
 	$this->load->library('form_validation');
 	if ($this->form_validation->run() == FALSE) {
+		echo "<script type='text/javascript'>alert('checkout1');</script>";
 		redirect('checkout/index', 'refresh');
 	} else {
 		$ccard = $this->input->get_post('ccard');
@@ -47,6 +48,7 @@ function checkout1() {
 	// checks that the credit card has 16 digits
 	public function ccard_check($ccard) {
 		if (preg_match("/^\d{16}$/", $ccard) == 0) {
+			// echo "<script type='text/javascript'>alert('ccard_check');</script>";
 			$this->form_validation->set_message('ccard_check', 'Credit card must have 16 digits.');
 			return false;
 		}
