@@ -141,9 +141,12 @@ class CandyStore extends CI_Controller {
     function update_total() {
 	$this->load->model('order_model');
 	$this->order_model->total();
-	redirect('users/cart.php', 'refresh');
+	redirect('candystore/cart', 'refresh');
     }
-
+    
+    function cart() {
+    	$this->load->view('users/cart.php');
+    }
     
     function update_quantity() {
     	$this->load->model('order_item_model');
@@ -174,10 +177,6 @@ class CandyStore extends CI_Controller {
         $this->customer_model->deleteAll();
 	redirect('candystore/customers', 'refresh');
 	return;
-    }
-    
-    function cart() {
-    	$this->load->view('users/cart.php');
     }
 
     function logout() {

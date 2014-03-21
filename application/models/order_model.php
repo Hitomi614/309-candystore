@@ -20,6 +20,7 @@ class Order_model extends CI_Model { // shopping cart
 		$total = 0;
 		//if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
 		// for all items in the $_SESSION['order'] array,
+		if (isset($_SESSION['order'])) {
 		foreach ($_SESSION['order'] as $product_id => $quantity) {
 			
 			// get price of this item
@@ -31,9 +32,8 @@ class Order_model extends CI_Model { // shopping cart
 			
 			$total += $quantity * $price;
 		}
+		}
 		$_SESSION["total"] = $total;
-		//}
-			
 	}
 	
 	// customer: insert order info into database
