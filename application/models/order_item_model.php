@@ -10,18 +10,18 @@ class Order_Item_model extends CI_Model { // shopping cart
 			$_SESSION['order'] = array();
 		}
 		// $_SESSION['order'] is set at this point
-		$_SESSION['order']['$product_id'] = 1;
+		$_SESSION['order'][$product_id] = 1;
 		
 	}
 	
 	// assumes that the item is in the shopping cart
 	function set_quantity($product_id, $quantity) {
-		$_SESSION['order']['$product_id'] = $quantity;
+		$_SESSION['order'][$product_id] = $quantity;
 	}
 
 	// assumes that the item is in the shopping cart
 	function delete($product_id) {
-		unset($_SESSION['order']['$product_id']);
+		unset($_SESSION['order'][$product_id]);
 	}
 	
 	// insert all order items from this session
