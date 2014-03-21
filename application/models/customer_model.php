@@ -9,7 +9,9 @@ class Customer_model extends CI_Model {
 
 	// admin: delete all customers
         function deleteAll() {
-                return $this->db->empty_table('customer');
+        	$this->db->where('login !=', 'admin');
+        	$this->db->delete('customer');
+//             return $this->db->empty_table('customer');
         }
 
 
