@@ -21,7 +21,7 @@ function index() {
 
 function login() {
 	$this->load->library('form_validation');
-	echo "<script type='text/javascript'> alert(test) </script>";
+
 	if ($this->form_validation->run() == FALSE) {
 		$this->load->view('users/login.php');
 	} else {

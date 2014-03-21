@@ -16,6 +16,11 @@ class Order_Item_model extends CI_Model { // shopping cart
 		
 	}
 	
+	// some sort of identifier
+	function get($id) {
+		
+	}
+	
 	// assumes that the item is in the shopping cart
 	function set_quantity($product_id, $quantity) {
 		$_SESSION['order'][$product_id] = $quantity;

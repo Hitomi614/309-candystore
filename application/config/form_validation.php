@@ -46,9 +46,9 @@ $config = array(
                         'rules' => 'required|callback_valid_password'
                 )
         ),
-	'checkout/checkout' => array(
+	'checkout/checkout1' => array(
                 array(
-                        'field' => 'ccard',
+                        'field' => 'ccardno',
                         'label' => 'Credit Card',
                         'rules' => 'required|callback_ccard_check'
                 ),
@@ -60,7 +60,7 @@ $config = array(
 		array(
                         'field' => 'year',
                         'label' => 'YY',
-                        'rules' => 'required|callback_ccard_year|callback_exp'
+                        'rules' => 'required|callback_ccard_year|callback_ccard_exp'
                 )
         )
 );
