@@ -2,6 +2,10 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+$g_login;
+
+
 class Login extends CI_Controller {
 
 
@@ -25,9 +29,6 @@ function login() {
 		redirect('candystore/index', 'refresh');
 	}
 }
-
-
-$g_login;
 
 // checks that login exists in database
 function valid_login($login) {

@@ -2,6 +2,10 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
+$g_login;
+
 class Item extends CI_Controller {
 
 
@@ -26,8 +30,6 @@ function login() {
 	}
 }
 
-
-$g_login;
 
 // checks that login exists in database
 function valid_login($login) {
@@ -60,3 +62,7 @@ function valid_password($password) {
 	$this->form_validation->set_message('valid_password', 'Invalid login-password combination');
 	return false;
 }
+
+}
+
+?>
