@@ -40,7 +40,7 @@ function valid_login($login) {
 		$g_login = $login;
 		return true;
 	}
-	$this->form_validation->set_message('valid_login', 'Login doesn\'t exist!');
+	$this->form_validation->set_message('valid_login', 'Login doesn\' exist!');
 	return false;
 	
 }
@@ -48,8 +48,6 @@ function valid_login($login) {
 
 // checks that password matches login
 function valid_password($password) {
-	
-	global $g_login;
 	$this->db->select('password');
 	$this->db->where('login', $g_login);
 	$query = $this->db->get('customer');
@@ -62,3 +60,5 @@ function valid_password($password) {
 	$this->form_validation->set_message('valid_password', 'Invalid login-password combination');
 	return false;
 }
+}
+?>
