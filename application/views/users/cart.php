@@ -5,7 +5,7 @@
 	input { display: block;}
 	
 </style>
-
+session_start();
 <?php
 	// assuming that you can only reach here if you're logged in
 	if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
@@ -34,7 +34,7 @@
 	$this->load->model('order_model');
 	$total = $this->order_model->total();
 
-	echo "<p> Total cost: " . $total "</p>";
+	echo "<p> Total cost: " . $total . "</p>";
 
 	echo "<p>" . anchor('candystore/update_total','Update Total') . "</p>";
 
