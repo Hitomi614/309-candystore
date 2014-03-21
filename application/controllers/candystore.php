@@ -241,9 +241,9 @@ class CandyStore extends CI_Controller {
 		$query = $this->db->get_where('customer',array('login'=>$g_login));
 		
 // 		$c_password = $query->result()->password;
-		$c_password = $query->row(1, 'customer');
+		$c_password = $query->result('password');
 		
-		echo "<script type='text/javascript'> alert('" . $c_password . "') </script>";
+		echo "<script type='text/javascript'> alert('asdf " . $c_password . "') </script>";
 		//$c_password = $row->password;
 	
 		if ($c_password == $password) {
