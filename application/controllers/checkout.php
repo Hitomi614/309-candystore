@@ -18,7 +18,7 @@ function index() {
 }
 
 
-function checkout() {
+function checkout1() {
 	$this->load->library('form_validation');
 	if ($this->form_validation->run() == FALSE) {
 		redirect('checkout/index', 'refresh');
