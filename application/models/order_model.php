@@ -47,7 +47,7 @@ class Order_model extends CI_Model { // shopping cart
 		$total = floatval($this->total());
 		
 		$myquery = 'INSERT INTO `candystore`.`order`(`customer_id`, `order_date`, `order_time`, `total`, `creditcard_number`, `creditcard_month`, `creditcard_year`)
-			VALUES($customer_id, CURRENT_DATE(), CURRENT_TIME(), $total, '$ccard', $month, $year)';
+			VALUES($customer_id, CURRENT_DATE(), CURRENT_TIME(), $total, $ccard, $month, $year)';
 
 		$this->db->query($myquery);
 		return $this->db->insert_id();
