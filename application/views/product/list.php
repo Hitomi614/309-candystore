@@ -50,6 +50,7 @@
 				echo "<td>" . anchor("candystore/editForm/$product->id",'Edit') . "</td>";
 			}
 			if ($loggedin == true) {
+
 				echo "<td>" . anchor("candystore/add/$product->id",'Add') . "</td>";
 			}
 			echo "<td>" . anchor("candystore/read/$product->id",'View') . "</td>";

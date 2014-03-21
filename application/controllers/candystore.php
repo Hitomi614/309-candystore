@@ -136,6 +136,13 @@ class CandyStore extends CI_Controller {
     function cart() {
     	$this->load->view('users/cart.php');
     }
+
+    function change($id) {
+    	$this->load->model('order_item_model');
+    	$order = $this->order_item_model->get($id);
+    	$data['order']=$order;
+    	$this->load->view('users/change.php',$data);
+    }
     
     function update_quantity() {
     	$this->load->model('order_item_model');
@@ -181,13 +188,6 @@ class CandyStore extends CI_Controller {
 	redirect('candystore/index', 'refresh');
     } 
     
-    function change($id) {
-    	$this->load->model('order_item_model');
-    	$order = $this->order_item_model->get($id);
-    	$data['order']=$order;
-    	$this->load->view('users/change.php',$data);
-    }
-    
 	function newUser() {
 		$this->load->view('users/newUser.php');
 	}
@@ -195,6 +195,9 @@ class CandyStore extends CI_Controller {
 	function add($product_id) {
 		$this->load->model('order_item_model');
 		$this->order_item_model->add_item($product_id);
+
+		echo "<script type='text/javascript'>alert('{$product_id}');</script>";
+				
 		$this->load->model('order_model');
 		$this->order_model->total();
 		redirect('candystore/index', 'refresh');
@@ -232,11 +235,12 @@ class CandyStore extends CI_Controller {
 	function valid_password($password) {
 		global $g_login;
 		$query = $this->db->get_where('customer',array('login'=>$g_login));
-		
-		$row = $query->row(0, 'customer');
-		$c_password = $row->password;
-		if ($c_password == $password) {
-			return true;
+		if ($query->num_rows() == 1) {
+			$row = $query->row(0, 'customer');
+			$c_password = $row->password;
+			if ($c_password == $password) {
+				return true;
+			}
 		}
 		$this->form_validation->set_message('valid_password', 'Invalid login-password combination');
 		return false;
