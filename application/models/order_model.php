@@ -18,21 +18,22 @@ class Order_model extends CI_Model { // shopping cart
 	// can handle no available shopping cart session
 	function total() {
 		$total = 0;
-		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
-			// for all items in the $_SESSION['order'] array,
-			foreach ($_SESSION['order'] as $product_id => $quantity) {
-				
-				// get price of this item
-				$this->db->select('price');
-				$this->db->where('id', $product_id);
-				$query = $this->db->get('product');
-				$row = $query->row(0, 'product');
-				$price = $row->price;
-				
-				$total += $quantity * $price;
-			}
+		//if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+		// for all items in the $_SESSION['order'] array,
+		foreach ($_SESSION['order'] as $product_id => $quantity) {
+			
+			// get price of this item
+			$this->db->select('price');
+			$this->db->where('id', $product_id);
+			$query = $this->db->get('product');
+			$row = $query->row(0, 'product');
+			$price = $row->price;
+			
+			$total += $quantity * $price;
 		}
-		return $total;
+		$_SESSION["total"] = $total;
+		//}
+			
 	}
 	
 	// customer: insert order info into database

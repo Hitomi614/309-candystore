@@ -150,6 +150,7 @@ class CandyStore extends CI_Controller {
     	$id = $this->input->get_post('product_id');
     	$new = $this->input->get_post('quantity');
     	$this->order_model->set_quantity($id, $new);
+    	$this->order_model->total();
     	redirect('users/cart.php', 'refresh');
     }
 
@@ -198,6 +199,8 @@ class CandyStore extends CI_Controller {
 	function add($product_id) {
 		$this->load->model('order_item_model');
 		$this->order_item_model->add_item($product_id);
+		$this->load->model('order_model');
+		$this->order_model->total();
 		redirect('candystore/index', 'refresh');
 	}
 	function loginuser() {
@@ -207,6 +210,7 @@ class CandyStore extends CI_Controller {
 		} else {
 			$_SESSION["loggedIn"] = "true";
 			$_SESSION["username"] = $this->input->get_post("login");
+			$_SESSION["total"] = 0;
 			redirect('candystore/index', 'refresh');
 		}
 	}
@@ -231,20 +235,10 @@ class CandyStore extends CI_Controller {
 	// checks that password matches login
 	function valid_password($password) {
 		global $g_login;
-// 		$this->db->select('password');
-// 		$this->db->where('login', $g_login);
-// 		$query = $this->db->get('customer');
-// 		$c_password = $query->result()->password;//row(1, 'customer');
-		
 		$query = $this->db->get_where('customer',array('login'=>$g_login));
 		
-// 		$c_password = $query->result()->password;
 		$row = $query->row(0, 'customer');
 		$c_password = $row->password;
-		
-		echo "<script type='text/javascript'> alert('" . $c_password . "') </script>";
-		//$c_password = $row->password;
-	
 		if ($c_password == $password) {
 			return true;
 		}
