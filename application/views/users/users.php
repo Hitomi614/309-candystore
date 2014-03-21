@@ -13,6 +13,7 @@
                 echo "<td>" . $customer->id . "</td>";
                 echo "<td>" . $customer->first . "</td>";
                 echo "<td>" . $customer->last . "</td>";
+                echo "<td>" . $customer->login . "</td>";
                 echo "<td>" . $customer->password . "</td>";
                 echo "<td>" . $customer->email . "</td>";
                 echo "</tr>";

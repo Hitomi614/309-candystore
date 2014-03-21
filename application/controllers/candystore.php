@@ -27,17 +27,6 @@ class CandyStore extends CI_Controller {
     		$this->load->model('product_model');
     		$products = $this->product_model->getAll();
     		$data['products']=$products;
-
-                // orders
-                $this->load->model('order_model');
-                $orders = $this->order_model->getAll();
-                $data['orders']=$orders;
-
-                // customers
-                $this->load->model('customer_model');
-                $customers = $this->customer_model->getAll();
-                $data['customers']=$customers;
-
     		$this->load->view('product/list.php',$data);
     }
     
@@ -158,7 +147,11 @@ class CandyStore extends CI_Controller {
     }
 
     function orders() {
-    	$this->load->view('orders/orders.php');
+    	// orders
+    	$this->load->model('order_model');
+    	$orders = $this->order_model->getAll();
+    	$data['orders']=$orders;
+    	$this->load->view('orders/orders.php',$data);
     }
 
     function delete_orders() {
@@ -169,7 +162,11 @@ class CandyStore extends CI_Controller {
     }
 
     function customers() {
-	$this->load->view('users/users.php');
+    	// customers
+    	$this->load->model('customer_model');
+    	$customers = $this->customer_model->getAll();
+    	$data['customers']=$customers;
+		$this->load->view('users/users.php',$data);
     }
 
     function delete_users() {
