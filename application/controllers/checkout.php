@@ -2,6 +2,9 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+$g_month = 00;
+$g_year = 00;
+
 class Checkout extends CI_Controller {
 
 
@@ -51,7 +54,7 @@ function checkout() {
 	}
 
 
-$g_month = 00;
+
 	// check that month has valid input
 	public function ccard_month($month) {
 		if (preg_match("/^(0[1-9]|1[0-2])$/", $month) == 0) {
@@ -64,7 +67,6 @@ $g_month = 00;
 	}
 
 
-$g_year = 00;
         // check that year has valid input
         public function ccard_year($year) {
                 if (preg_match("/^[0-9]{2}$/", $year) == 0) {
