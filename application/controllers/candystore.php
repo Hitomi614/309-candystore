@@ -189,6 +189,8 @@ class CandyStore extends CI_Controller {
     	$this->load->view('users/change.php',$data);
     }
     
-
+	function newUser() {
+		$this->load->view('users/newUser.php');
+	}
 }
 

@@ -71,7 +71,7 @@ $g_year = 00;
                         $this->form_validation->set_message('ccard_year', 'Year format must be the last two digits of the year.');
                         return false;
                 }
-		globl $g_year;
+		global $g_year;
 		$g_year = $year;
                 return true;
         }
