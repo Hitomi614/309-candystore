@@ -1,11 +1,14 @@
 <?php
-session_save_path();
-session_start();
+
+$g_login;
 
 class CandyStore extends CI_Controller {
    
      
     function __construct() {
+    		session_save_path();
+    		session_start();
+    	 
     		// Call the Controller constructor
 	    	parent::__construct();
 	    	
@@ -198,6 +201,56 @@ class CandyStore extends CI_Controller {
 		$this->load->model('order_item_model');
 		$this->order_item_model->add_item($product_id);
 		redirect('candystore/index', 'refresh');
+	}
+	function loginuser() {
+		$this->load->library('form_validation');
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('users/login.php');
+		} else {
+			$_SESSION["loggedIn"] = "true";
+			$_SESSION["username"] = $this->input->get_post("login");
+			redirect('candystore/index', 'refresh');
+		}
+	}
+
+	// checks that login exists in database
+	function valid_login($login) {
+		global $g_login;
+		$this->db->where('login', $login);
+		$query = $this->db->get('customer');
+		// login exists
+		if ($query->num_rows() == 1) {
+
+			$g_login = $login;
+			return true;
+		}
+		$this->form_validation->set_message('valid_login', 'Login doesn\'t exist!');
+		return false;
+	
+	}
+	
+	
+	// checks that password matches login
+	function valid_password($password) {
+		global $g_login;
+// 		$this->db->select('password');
+// 		$this->db->where('login', $g_login);
+// 		$query = $this->db->get('customer');
+// 		$c_password = $query->result()->password;//row(1, 'customer');
+		
+		$query = $this->db->get_where('customer',array('login'=>$g_login));
+		
+// 		$c_password = $query->result()->password;
+		$c_password = $query->row(1, 'customer');
+		
+		echo "<script type='text/javascript'> alert('" . $c_password . "') </script>";
+		//$c_password = $row->password;
+	
+		if ($c_password == $password) {
+			return true;
+		}
+		$this->form_validation->set_message('valid_password', 'Invalid login-password combination');
+		return false;
 	}
 }
 

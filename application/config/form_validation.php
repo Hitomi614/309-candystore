@@ -34,7 +34,7 @@ $config = array(
                 )
 	),
 
-        'login/login' => array(
+        'candystore/loginuser' => array(
                 array(
                         'field' => 'login',
                         'label' => 'Login',

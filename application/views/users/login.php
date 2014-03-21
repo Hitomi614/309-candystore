@@ -8,7 +8,8 @@
 <?php 
 	echo "<p>" . anchor('candystore/index','Back') . "</p>";
 	
-	echo form_open('login/login');
+	echo form_open('candystore/loginuser');
+// 	echo form_open('login/login');
 		
 	echo form_label('Login'); 
 	echo form_error('login');

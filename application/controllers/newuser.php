@@ -1,9 +1,9 @@
 <?php
 
-//session_start();
 class Newuser extends CI_Controller {
 	function __construct() {
 		// call the controller constructor
+		session_start();
 		parent::__construct();
 	}
 
