@@ -6,9 +6,6 @@ class CandyStore extends CI_Controller {
    
      
     function __construct() {
-    		session_save_path();
-    		session_start();
-    	 
     		// Call the Controller constructor
 	    	parent::__construct();
 			session_start();
@@ -242,7 +239,8 @@ class CandyStore extends CI_Controller {
 		$query = $this->db->get_where('customer',array('login'=>$g_login));
 		
 // 		$c_password = $query->result()->password;
-		$c_password = $query->row(1, 'customer');
+		$row = $query->row(0, 'customer');
+		$c_password = $row->password;
 		
 		echo "<script type='text/javascript'> alert('" . $c_password . "') </script>";
 		//$c_password = $row->password;
