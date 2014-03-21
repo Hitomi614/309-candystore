@@ -6,7 +6,7 @@
 </style>
 
 <?php
-        echo "<p>" . anchor('candystore/cart','Back') . "</p>";^M
+        echo "<p>" . anchor('candystore/cart','Back') . "</p>";
 
         echo form_open_multipart('checkout/checkout');
 
