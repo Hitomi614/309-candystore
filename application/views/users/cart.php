@@ -34,9 +34,12 @@
 
         echo "<table>";
 
+    if (isset($_SESSION["total"])) {
+		echo "<p> Total cost: " . $_SESSION["total"] . "</p>";
+    } else {
+    	echo "<p> Total cost: 0 </p>";
+    }
     
-	echo "<p> Total cost: " . $_SESSION["total"] . "</p>";
-
 	echo "<p>" . anchor('candystore/update_total','Update Total') . "</p>";
 
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
