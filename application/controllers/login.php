@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
+//contoller login is not recognized by CodeIgniter .... move codes to candystore controller
 $g_login;
 
 

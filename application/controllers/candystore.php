@@ -6,11 +6,9 @@ class CandyStore extends CI_Controller {
    
      
     function __construct() {
-    		session_save_path();
-    		session_start();
-    	 
     		// Call the Controller constructor
 	    	parent::__construct();
+			session_start();
 	    	
 	    	
 	    	$config['upload_path'] = './images/product/';
@@ -233,18 +231,11 @@ class CandyStore extends CI_Controller {
 	// checks that password matches login
 	function valid_password($password) {
 		global $g_login;
-// 		$this->db->select('password');
-// 		$this->db->where('login', $g_login);
-// 		$query = $this->db->get('customer');
-// 		$c_password = $query->result()->password;//row(1, 'customer');
-		
+
 		$query = $this->db->get_where('customer',array('login'=>$g_login));
-		
-// 		$c_password = $query->result()->password;
-		$c_password = $query->result('password');
-		
-		echo "<script type='text/javascript'> alert('asdf " . $c_password . "') </script>";
-		//$c_password = $row->password;
+	
+		$row = $query->row(0, 'customer');
+		$c_password = $row->password;
 	
 		if ($c_password == $password) {
 			return true;

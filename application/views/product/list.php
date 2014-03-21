@@ -13,7 +13,7 @@
 			if ($_SESSION["username"] != "admin") {
 				//links to shopping cart and checkout
 				echo "<p>" . anchor('candystore/cart','My Shopping Cart') . "</p>";
-				// echo "<p>" . anchor('candystore/checkout','Checkout') . "</p>";
+				$loggedin = true;
 			} 
 			// logged in as admin
 			else if ($_SESSION["username"] == "admin") {
