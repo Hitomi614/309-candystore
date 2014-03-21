@@ -1,0 +1,9 @@
+session variables, etc
+
+$_SESSION["loggedIn"] = "true";
+$_SESSION["username"] = "$customer->login";
+$_SESSION["customer_id"]
+$_SESSION['order'] // an array of $product_id => $quantity
+
+
+
