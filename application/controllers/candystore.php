@@ -1,6 +1,5 @@
 <?php
-session_save_path();
-session_start();
+
 
 class CandyStore extends CI_Controller {
    
@@ -8,6 +7,7 @@ class CandyStore extends CI_Controller {
     function __construct() {
     		// Call the Controller constructor
 	    	parent::__construct();
+			session_start();
 	    	
 	    	
 	    	$config['upload_path'] = './images/product/';
