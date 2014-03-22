@@ -1,12 +1,18 @@
 <h2>Product Table</h2>
+<link rel="stylesheet" type="text/css" href="<?php  echo base_url(); ?>/css/template.css">
+<style>
+body{
+	background-image:url('<?php  echo base_url(); ?>/images/back1.jpg');
+}
+</style>
 <?php 
 		
  		$admin = false;
  		$loggedin = false;
-
+ 		echo "<div id='menu'>";
 		// check if logged in and say hi to user and display links to extra functions 
 		if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
-			
+		
 			echo "<p> Hi " . $_SESSION["username"] . "! </p>";
 
 			// logged in as regular customer 
@@ -33,7 +39,7 @@
 			echo "<p>" . anchor('candystore/login','Login') . "</p>";
 			echo "<p>" . anchor('candystore/newUser','Create New user Account') . "</p>";
 		}
-		
+		echo "</div>";
 		echo "<table>";
 		echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Photo</th></tr>";
 		

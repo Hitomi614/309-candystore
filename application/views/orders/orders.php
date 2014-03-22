@@ -1,6 +1,11 @@
 <h2> Orders </h2>
 
-
+<link rel="stylesheet" type="text/css" href="<?php  echo base_url(); ?>/css/template.css">
+<style>
+body{
+	background-image:url('<?php  echo base_url(); ?>/images/back1.jpg');
+}
+</style>
 
 <?php
 	// only admins should be here
@@ -21,6 +26,10 @@
 		echo "</tr>";
 	}
 	echo "<table>";
+	
+	echo "<div id='menu'>";
 	echo "<p>" . anchor('candystore/delete_orders', 'Delete all orders') . "</p>";
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
+	echo "</div>";
+	
 ?>

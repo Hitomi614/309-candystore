@@ -1,13 +1,17 @@
 <h2> Check Out </h2>
 
+<link rel="stylesheet" type="text/css" href="<?php  echo base_url(); ?>/css/template.css">
 <style>
-	input { display: block;}
-	
+body{
+	background-image:url('<?php  echo base_url(); ?>/images/back1.jpg');
+}
 </style>
 
 <?php 
+	echo "<div id='menu'>";
 	echo "<p>" . anchor('candystore/index','Back to Store') . "</p>";
 	echo "<p>" . anchor('candystore/cart','Edit Shopping Cart') . "</p>";
+	echo "</div>";
 	
 	echo form_open('candystore/checkout1');
 		

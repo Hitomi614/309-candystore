@@ -1,7 +1,15 @@
 <h2>Product Entry</h2>
+<link rel="stylesheet" type="text/css" href="<?php  echo base_url(); ?>/css/template.css">
+<style>
+body{
+	background-image:url('<?php  echo base_url(); ?>/images/back1.jpg');
+}
+</style>
 <?php 
+	echo "<div id='menu'>";
 	echo "<p>" . anchor('candystore/index','Back') . "</p>";
-
+	echo "</div>";
+	
 	echo "<p> ID = " . $product->id . "</p>";
 	echo "<p> NAME = " . $product->name . "</p>";
 	echo "<p> Description = " . $product->description . "</p>";
