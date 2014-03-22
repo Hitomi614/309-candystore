@@ -1,53 +1,79 @@
  body{
- 	background-image:url('http://localhost/csc309db/images/dcs_logo.png');
+ 	background-image:url('images/back.jpg');
 	background-repeat:no-repeat;
 	background-size:200px;
     font-family: Arial, Verdana, sans-serif;
     margin:0;
     padding:0;
+    color: #261700;
+    background-size: 100% 100%;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
  }
-  
  
- input,label {
+table{
+ 	background-color:#FFFFFF;
+ 	opacity:0.8;
+	width: 60%;
+ 	text-align: center;
+ 	margin-left: 10%;
+ }
+
+img {
+	opacity: 0.6;
+}
+
+img:hover{	
+	opacity:1.0;
+}
+ 
+div#menu{
+	width: 20%;
+	margin-left: 75%; 
+ 	text-align: center;
+ 	position: fixed;
+ 	
+}
+
+div#content{
+	background-color:#FFFFFF;
+ 	opacity:0.8;
+	width: 60%;
+ 	text-align: center;
+ 	margin-left: 10%;
+ 	
+}
+
+input,label {
+	padding: 4px;
  	display: block;
+ 	width: 40%;
+ 	margin-left: 30% 
+ 
  }
- 
- 
- h1 {
+
+label {
+	color: #e9ae11;
+}
+
+input {	
+	margin-top: 8px;
+}
+
+ h2 {
+ 	margin-top: 5%;
+ 	text-align: center;
  	font-size:2em;
- 	color: green;
+ 	color: brown;
  }
  
- h2{
- 	font-size:1em;
+ a:link, a:active, a:visited {
  	color: blue;
+ 	text-decoration: none;
  }
 
- #header{
-    font-size:12px;
-	width: 700px;
-	height: 50px;
- }
  
- #header > h1 {
- 		text-align:center
- }
- 
- #nav{
- 	padding: 5pt;
-	position: absolute;	
-	width:130px;
-	height: 800px;
-	font-size: 10pt;
-    border:1px solid #31363E;
-    background: lightgray;
- }
- 
- #main{
-	margin-left:160px;
-    width:540px;
-    height:800px;
-	background: white;
- }
-
-
+a:hover {
+	color: #FFAA22;
+}

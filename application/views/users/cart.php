@@ -1,12 +1,14 @@
 <h2> My Shopping Cart</h2>
 
-
+<link rel="stylesheet" type="text/css" href="<?php  echo base_url(); ?>/css/template.css">
 <style>
-	input { display: block;}
-	
+input { display: block;}
+body{
+	background-image:url('<?php  echo base_url(); ?>/images/back1.jpg');
+}
 </style>
 <?php
-	
+	echo "<div id='menu'>";
 	// assuming that you can only reach here if you're logged in
 	if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "true") {
 		echo "<p> Hi " . $_SESSION["username"] . "! </p>";
@@ -16,6 +18,7 @@
 	
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
 	echo "<p>" . anchor('checkout/index','Proceed to Checkout') . "</p>";
+	echo "</div>";
 	
 	echo "<table>";
 	echo "<tr><th>Product</th><th>Quantity</th><th>Change Quantity</th></tr>";
