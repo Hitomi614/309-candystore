@@ -41,13 +41,18 @@ class Order_model extends CI_Model { // shopping cart
 	
 	// customer: insert order info into database
 	function finalize($ccard, $month, $year) {
+		session_start();
 		// get customer id with username
-		$this->db->select('id');
-		$this->db->where('username', $_SESSION["username"]);
-		$query = $this->db->get('customer');
-		$row = $query->row(0, 'id');
-		$customer_id = $row->id;
+// 		$this->db->select('id');
+// 		$this->db->where('username', $_SESSION["username"]);
+// 		$query = $this->db->get('customer');
+// 		$row = $query->row(0, 'id');
+// 		$customer_id = $row->id;
 
+		$query = $this->db->get_where('customer', array('login'=>$_SESSION["username"]));
+		$row = $query->row(0, 'customer');
+		$customer_id = $row->id;
+		
 		$total = floatval($this->total());
 		
 		$myquery = 'INSERT INTO `candystore`.`order`(`customer_id`, `order_date`, `order_time`, `total`, `creditcard_number`, `creditcard_month`, `creditcard_year`)

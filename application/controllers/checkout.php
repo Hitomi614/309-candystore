@@ -20,8 +20,15 @@ function index() {
 
 function checkout1() {
 	$this->load->library('form_validation');
+	
+	// set rules here
+	$this->form_validation->set_rules('ccard', 'Credit Card', 'required|callback_ccard_check');
+	$this->form_validation->set_rules('month', 'MM', 'required|callback_ccard_month');
+	$this->form_validation->set_rules('year', 'YY', 'required|callback_ccard_year|callback_ccard_exp');
+	// set rules here 
+	
 	if ($this->form_validation->run() == FALSE) {
-		echo "<script type='text/javascript'>alert('checkout1');</script>";
+		//echo "<script type='text/javascript'>alert('checkout1');</script>";
 		redirect('checkout/index', 'refresh');
 	} else {
 		$ccard = $this->input->get_post('ccard');
@@ -31,11 +38,18 @@ function checkout1() {
 		$this->load->model('order_model');
 		$this->order_model->finalize($ccard, $month, $year);
 		
+		// get customer email
+		$query = $this->db->get_where('customer', array('login'=>$_SESSION["username"]));
+		$row = $query->row(0, 'customer');
+		$email = $row->email;
+		
 		//email receipt to customer
 		$this->load->library('email');
 		$this->email->from('candystore@gmail.com', 'CandyStore');
-		$this->email->to($customer->email);
+		$this->email->to($email);
 		$this->email->subject('Receipt of Your Candy Orders');
+		
+		//TODO: fix this!! 
 		$receipt = file_get_html('user/receipt.php');
 		$this->email->message($receipt->find('div[#toEmail]', 0));
 		$this->email->send();
@@ -47,8 +61,8 @@ function checkout1() {
  
 	// checks that the credit card has 16 digits
 	public function ccard_check($ccard) {
+			//echo "<script type='text/javascript'>alert('ccard_check');</script>";
 		if (preg_match("/^\d{16}$/", $ccard) == 0) {
-			// echo "<script type='text/javascript'>alert('ccard_check');</script>";
 			$this->form_validation->set_message('ccard_check', 'Credit card must have 16 digits.');
 			return false;
 		}
@@ -60,7 +74,7 @@ function checkout1() {
 	// check that month has valid input
 	public function ccard_month($month) {
 		if (preg_match("/^(0[1-9]|1[0-2])$/", $month) == 0) {
-                        $this->form_validation->set_message('ccard_month', 'Month format must be two digits.');
+            $this->form_validation->set_message('ccard_month', 'Month format must be two digits.');
 			return false;
 		}
 		global $g_month;
@@ -82,7 +96,7 @@ function checkout1() {
 
 	
 	// checks that the credit card has not expired
-	public function ccard_exp() {
+	public function ccard_exp($year) {
 		global $g_month;
 		global $g_year;
 

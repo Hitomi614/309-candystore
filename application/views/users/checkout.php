@@ -9,17 +9,17 @@
 	echo "<p>" . anchor('candystore/index','Back to Store') . "</p>";
 	echo "<p>" . anchor('candystore/cart','Edit Shopping Cart') . "</p>";
 	
-	echo form_open('checkout/checkout1');
+	echo form_open('candystore/checkout1');
 		
-	echo form_label('Credit Card Number', 'cardno'); 
-	echo form_error('cardno');
-	echo form_input('cardno', set_value('cardno'),"required");
+	echo form_label('Credit Card Number'); 
+	echo form_error('ccard');
+	echo form_input('ccard', set_value('ccard'),"required");
 
-	echo form_label('Expiration Date: Month (MM)', 'month');
+	echo form_label('Expiration Date: Month (MM)');
 	echo form_error('month');
 	echo form_input('month', set_value('month'),"required");
 
-	echo form_label('Expiration Date: Year (YY)', 'year');
+	echo form_label('Expiration Date: Year (YY)');
 	echo form_error('year');
 	echo form_input('year', set_value('year'),"required");
 	
