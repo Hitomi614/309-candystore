@@ -18,6 +18,13 @@ body{
 	
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
 	echo "<p>" . anchor('checkout/index','Proceed to Checkout') . "</p>";
+
+	if (isset($_SESSION["total"])) {
+		echo "<p> Total amount: $" . $_SESSION["total"] . "</p>";
+	} else {
+		echo "<p> Total amount: $0.00 </p>";
+	}
+	
 	echo "</div>";
 	
 	echo "<table>";
@@ -46,10 +53,5 @@ body{
     echo "<table>";
     
 
-    if (isset($_SESSION["total"])) {
-    	echo "<p> Total amount: $" . $_SESSION["total"] . "</p>";
-    } else {
-    	echo "<p> Total amount: $0.00 </p>";
-    }
 
 ?>

@@ -9,8 +9,10 @@ body{
 </style>
 
 <?php
+	echo "<div id='menu'>";
 	echo "<p>" . anchor('candystore/restart','Back to Candy Store') . "</p>";
-
+	echo "<p> Total amount: $" . $_SESSION["total"] . "</p>";
+	echo "</div>";
 	echo '<div id="toEmail">';
 	
 	// show products and respective quantities
@@ -31,8 +33,8 @@ body{
 		echo "</tr>";
 	}
 	
-	echo "<table>";
-	echo "<p> Total amount: $" . $_SESSION["total"] . "</p>";
+	echo "</table>";
+	
 	echo '<input type="button" onclick="window.print();" value="Print This Page">';
 		
 	
