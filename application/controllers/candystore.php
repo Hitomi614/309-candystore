@@ -128,7 +128,16 @@ class CandyStore extends CI_Controller {
 	    $this->load->view('users/login.php');
     }
 
-
+    // remove item from cart
+    function delete_item($product_id) {
+    	$this->load->model('order_item_model');
+    	$this->order_item_model->delete($product_id);
+    	$this->load->model('order_model');
+    	$this->order_model->total();
+    	
+		redirect('candystore/cart', 'refresh');
+    }
+    
     function update_total() {
 	$this->load->model('order_model');
 	$this->order_model->total();
@@ -215,40 +224,70 @@ class CandyStore extends CI_Controller {
 		redirect('candystore/index', 'refresh');
 	}
 	
-	
+	function restart() {
+		$_SESSION["total"] = 0;
+		$_SESSION["order"] = array();
+		redirect('candystore/index', 'refresh');
+		
+	}
 	///////////////// CHECKOUT STUFF ///////////////////////
 	function checkout1() {
 		$this->load->library('form_validation');
 
 		if ($this->form_validation->run() == FALSE) {
-			//echo "<script type='text/javascript'>alert('checkout1');</script>";
-			redirect('checkout/index', 'refresh');
+			$this->load->view('users/checkout.php');
 		} else {
 			$ccard = $this->input->get_post('ccard');
 			$month = $this->input->get_post('month');
 			$year = $this->input->get_post('year');
 	
+			// insert order into database
 			$this->load->model('order_model');
-			$this->order_model->finalize($ccard, $month, $year);
-	
+			$order_id = $this->order_model->finalize($ccard, $month, $year);
+			
+			// insert order_items into database
+			$this->load->model('order_item_model');
+			$this->order_item_model->finalize($order_id);
+
+			// get customer email
+			$this->load->model('customer_model');
+			$email = $this->customer_model->email();
+			
 			//email receipt to customer
 			$this->load->library('email');
 			$this->email->from('candystore@gmail.com', 'CandyStore');
-			$this->email->to($customer->email);
-			$this->email->subject('Receipt of Your Candy Orders');
-			$receipt = file_get_html('user/receipt.php');
-			$this->email->message($receipt->find('div[#toEmail]', 0));
+
+			// make message
+			$content = "You ordered a total of $" . $_SESSION["total"] . " from CandyStore." .  
+			" You purchased:" ;
+			
+			foreach ($_SESSION["order"] as $product_id => $quantity) {
+
+				// get product name
+				$query = $this->db->get_where('product', array('id'=>$product_id));
+				if ($query->num_rows() == 1) {
+					$row = $query->row(0, 'product');
+					$name = $row->name;
+				}
+				$content .= " " . $quantity . " of " . $name . ", " ;
+			}
+			rtrim($content, ", ");
+			
+			// send email 
+			$this->email->to($email);
+			$this->email->subject('Your CandyStore Receipt');
+			$this->email->message('$content');
 			$this->email->send();
 	
-			$this->load->view('user/receipt.php');
+			$this->load->view('users/receipt.php');
 		}
 	}
 	
 
 	// checks that the credit card has 16 digits
-	function ccard_check($ccard) {
+	function card_number($ccard) {
 		if (preg_match("/^\d{16}$/", $ccard) == 0) {
-			$this->form_validation->set_message('ccard_check', 'Credit card must have 16 digits.');
+			$this->form_validation->set_message('card_number', 'Credit card must have 16 digits.');
 			return false;
 		}
 		return true;
@@ -257,9 +296,9 @@ class CandyStore extends CI_Controller {
 	
 	
 	// check that month has valid input
-	function ccard_month($month) {
+	function card_month($month) {
 		if (preg_match("/^(0[1-9]|1[0-2])$/", $month) == 0) {
-			$this->form_validation->set_message('ccard_month', 'Month format must be two digits.');
+			$this->form_validation->set_message('card_month', 'Month format must be two digits.');
 			return false;
 		}
 		global $g_month;
@@ -269,9 +308,9 @@ class CandyStore extends CI_Controller {
 	
 	
 	// check that year has valid input
-	function ccard_year($year) {
+	function card_year($year) {
 		if (preg_match("/^[0-9]{2}$/", $year) == 0) {
-			$this->form_validation->set_message('ccard_year', 'Year format must be the last two digits of the year.');
+			$this->form_validation->set_message('card_year', 'Year format must be the last two digits of the year.');
 			return false;
 		}
 		global $g_year;
@@ -281,7 +320,7 @@ class CandyStore extends CI_Controller {
 	
 	
 	// checks that the credit card has not expired
-	function ccard_exp($year) {
+	function card_exp($year) {
 		global $g_month;
 		global $g_year;
 	
@@ -293,7 +332,7 @@ class CandyStore extends CI_Controller {
 		// if provided month is smaller than current month AND
 		// provided year is smaller or equal to current year
 		if ( ($g_year < $cyear) || (($g_month < $cmonth) && ($g_year <= $cyear))) {
-			$this->form_validation->set_message('ccard_exp', 'Credit card has expired!');
+			$this->form_validation->set_message('card_exp', 'Credit card has expired!');
 			return false;
 		}
 		return true;

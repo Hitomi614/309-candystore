@@ -9,12 +9,19 @@ class Checkout extends CI_Controller {
 
 
 function __construct() {
+	session_start();
 	parent::__construct();
 }
 
 
 function index() {
-	$this->load->view('users/checkout.php'); 
+	// can only check out if total > 0
+	if (!isset($_SESSION["total"]) || $_SESSION["total"] == 0) {
+		echo "<script type='text/javascript'>alert('There are no items in your cart.');</script>";
+		$this->load->view('users/cart.php');
+	} else {
+		$this->load->view('users/checkout.php');
+	} 
 }
 
 

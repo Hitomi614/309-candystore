@@ -17,7 +17,7 @@ class Order_model extends CI_Model { // shopping cart
 	// no input since there's only one active session
 	// can handle no available shopping cart session
 	function total() {
-		$total = 0;
+		$total = 0.00;
 		//if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
 		// for all items in the $_SESSION['order'] array,
 		if (isset($_SESSION['order'])) {
@@ -36,29 +36,24 @@ class Order_model extends CI_Model { // shopping cart
 			}
 		}
 		}
-		$_SESSION["total"] = $total;
+		$_SESSION["total"] = floatval($total);
 	}
 	
 	// customer: insert order info into database
 	function finalize($ccard, $month, $year) {
-		session_start();
-		// get customer id with username
-// 		$this->db->select('id');
-// 		$this->db->where('username', $_SESSION["username"]);
-// 		$query = $this->db->get('customer');
-// 		$row = $query->row(0, 'id');
-// 		$customer_id = $row->id;
-
+		
+		// get current customer's id
 		$query = $this->db->get_where('customer', array('login'=>$_SESSION["username"]));
 		$row = $query->row(0, 'customer');
 		$customer_id = $row->id;
 		
-		$total = floatval($this->total());
+		$total = $_SESSION["total"];
+		$str_card = strval($ccard);
 		
-		$myquery = 'INSERT INTO `candystore`.`order`(`customer_id`, `order_date`, `order_time`, `total`, `creditcard_number`, `creditcard_month`, `creditcard_year`)
-			VALUES($customer_id, CURRENT_DATE(), CURRENT_TIME(), $total, $ccard, $month, $year)';
-
+		$myquery = "INSERT INTO `order` (`customer_id`, `order_date`, `order_time`, `total`, `creditcard_number`, `creditcard_month`, `creditcard_year`)
+		VALUES (" . $customer_id . ", CURRENT_DATE(), CURRENT_TIME(), " . $total . ", " . $str_card . ", " . $month . ", " . $year . ")";
 		$this->db->query($myquery);
+
 		return $this->db->insert_id();
 	}
 }

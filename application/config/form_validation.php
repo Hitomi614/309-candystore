@@ -50,17 +50,17 @@ $config = array(
                 array(
                         'field' => 'ccard',
                         'label' => 'Credit Card',
-                        'rules' => 'required|callback_ccard_check'
+                        'rules' => 'required|callback_card_number'
                 ),
 		array(
                         'field' => 'month',
                         'label' => 'MM',
-                        'rules' => 'required|callback_ccard_month'
+                        'rules' => 'required|callback_card_month'
                 ),
 		array(
                         'field' => 'year',
                         'label' => 'YY',
-                        'rules' => 'required|callback_ccard_year|callback_ccard_exp'
+                        'rules' => 'required|callback_card_year|callback_card_exp'
                 )
         )
 );

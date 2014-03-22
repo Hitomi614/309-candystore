@@ -15,10 +15,6 @@ class Order_Item_model extends CI_Model { // shopping cart
 		} else {
 			$_SESSION['order'][$product_id]++;
 		}
-		
-		//echo "<script type='text/javascript'>alert('{$product_id}');</script>";
-		//echo "<script type='text/javascript'>alert('{$_SESSION['order'][$product_id]}');</script>";
-		
 	}
 	
 	// assumes that the item is in the shopping cart
@@ -34,6 +30,7 @@ class Order_Item_model extends CI_Model { // shopping cart
 	// insert all order items from this session
 	function finalize($order_id) {
 		foreach ($_SESSION['order'] as $product_id=>$quantity) {
+			
 			$this->db->insert("order_item", array(
 					'order_id' => $order_id,
 					'product_id' => $product_id,

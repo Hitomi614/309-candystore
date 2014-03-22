@@ -14,7 +14,14 @@ class Customer_model extends CI_Model {
         	$this->db->delete('customer');
         }
 
-
+		// get email of current logged in customer
+        function email() {
+        	$query = $this->db->get_where('customer', array('login'=>$_SESSION["username"]));
+        	$row = $query->row(0, 'customer');
+        	return $row->email;
+        }
+        
+        
         function insert($customer) {
 		$this->db->insert("customer", array(
                         'first' => $customer->first,

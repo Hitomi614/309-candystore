@@ -21,7 +21,7 @@ class Product_model extends CI_Model {
 	function insert($product) {
 		return $this->db->insert("product", array(
 			'name' => $product->name,
-	                'description' => $product->description,
+            'description' => $product->description,
 			'price' => $product->price,
 			'photo_url' => $product->photo_url));
 	}

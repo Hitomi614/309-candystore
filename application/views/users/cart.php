@@ -12,14 +12,7 @@
 		echo "<p> Hi " . $_SESSION["username"] . "! </p>";
 	}
 	
-
-	if (isset($_SESSION["total"])) {
-		echo "<p> Total cost: " . $_SESSION["total"] . "</p>";
-	} else {
-		echo "<p> Total cost: 0 </p>";
-	}
-	
-	echo "<p>" . anchor('candystore/update_total','Update Total') . "</p>";
+	// echo "<p>" . anchor('candystore/update_total','Update Total') . "</p>";
 	
 	echo "<p>" . anchor('candystore/index','Back to Candy Store') . "</p>";
 	echo "<p>" . anchor('checkout/index','Proceed to Checkout') . "</p>";
@@ -42,10 +35,18 @@
 	
 			// field to change quantity
 			echo "<td>" . anchor("candystore/change/$product_id",'Change') . "</td>";
+			echo "<td>" . anchor("candystore/delete_item/$product_id",'Delete') . "</td>";
 			echo "</tr>";
 		}
 	}
 
     echo "<table>";
+    
+
+    if (isset($_SESSION["total"])) {
+    	echo "<p> Total amount: $" . $_SESSION["total"] . "</p>";
+    } else {
+    	echo "<p> Total amount: $0.00 </p>";
+    }
 
 ?>
