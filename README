@@ -1,0 +1,12 @@
+The home page is the product table. Default user mode is none, as in, no user is logged in. The admin and customer share the same login page.
+
+=========== admin mode ===========
+The admin can add, edit, and delete products. The admin can't buy products, so there is no cart page.
+Finalized orders can be seen from the side bar. Clicking on the link will take the user to the page displaying all finalized orders. There is an option to delete all orders on that page.
+Similarly, all registered customers can be viewed and deleted in the same manner.
+
+=========== customer mode =============
+The customer can view item information, and add it to their cart. The cart page (accessible from the main product table) has options to change the quantity of each product, as well as delete the product from the shopping cart. Changing the quantity to a number less than 1 will result in deleting the item from the cart.
+The checkout page is only accessible through the cart page. The user will then be required to input credit card information. The receipt page shows the total amount of the order, as well as items purchased and their respective quantities.
+The user can then go back to the product page to continue shopping (the cart will be reset), or log out from there.
+
