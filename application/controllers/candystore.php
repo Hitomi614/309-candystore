@@ -273,10 +273,21 @@ class CandyStore extends CI_Controller {
 			}
 			rtrim($content, ", ");
 			
-			// send email 
+			// send email
+			$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_port' => 465,
+					'smtp_crypto' => 'ssl',
+					'smtp_user' => 'gracelin.614@gmail.com',
+					'smtp_pass' => 'siheya90',
+					'mailtype'  => 'html',
+					'charset'   => 'iso-8859-1'
+			);
+			
 			$this->email->to($email);
 			$this->email->subject('Your CandyStore Receipt');
-			$this->email->message('$content');
+			$this->email->message($content);
 			$this->email->send();
 	
 			$this->load->view('users/receipt.php');
@@ -343,7 +354,6 @@ class CandyStore extends CI_Controller {
 	///////////////// LOGIN STUFF ///////////////////////
 	function loginuser() {
 		$this->load->library('form_validation');
-		echo "<script type='text/javascript'>alert('{$this->input->get_post("login")}');</script>";
 		if ($this->input->get_post("login") == 'admin' || $this->form_validation->run() == TRUE) {
 		$_SESSION["loggedIn"] = "true";
 				$_SESSION["username"] = $this->input->get_post("login");
