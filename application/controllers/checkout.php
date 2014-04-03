@@ -56,7 +56,6 @@ function checkout1() {
 		$this->email->to($email);
 		$this->email->subject('Receipt of Your Candy Orders');
 		
-		//TODO: fix this!! 
 		$receipt = file_get_html('user/receipt.php');
 		$this->email->message($receipt->find('div[#toEmail]', 0));
 		$this->email->send();
